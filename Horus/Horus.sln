@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9D635022-AFE8-4854-96AF-A2C679C7261B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E474FFAC-2FC6-4C31-B688-741E368A53B7}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Horus", "src\Horus\Horus.xproj", "{201D80C2-57AE-470E-A8BA-BC92EB2A9493}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{201D80C2-57AE-470E-A8BA-BC92EB2A9493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{201D80C2-57AE-470E-A8BA-BC92EB2A9493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{201D80C2-57AE-470E-A8BA-BC92EB2A9493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{201D80C2-57AE-470E-A8BA-BC92EB2A9493}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{201D80C2-57AE-470E-A8BA-BC92EB2A9493} = {9D635022-AFE8-4854-96AF-A2C679C7261B}
+	EndGlobalSection
+EndGlobal
