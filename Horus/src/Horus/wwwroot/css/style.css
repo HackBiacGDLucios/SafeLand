@@ -1,10 +1,11 @@
-h2 span{
+h4 span{
    color: white; 
-   position: absolute; 
-   bottom: 100px; 
+   max-width: 80%;
+   position: absolute;
+   top: 150px; 
    right: 0; 
    width: auto; 
-   font: bold 24px/45px Helvetica, Sans-Serif; 
+   font: bold 23px/30px Helvetica, Sans-Serif; 
    letter-spacing: -1px;  
    background: rgb(0, 0, 0); /* fallback color */
    background: rgba(0, 0, 0, 0.7);
@@ -76,7 +77,7 @@ h2 span{
     position: absolute;
     top: 70px;
     left: 20px;
-    z-index: 1000;
+    z-index: 100;
     width: 30%;
 }
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
