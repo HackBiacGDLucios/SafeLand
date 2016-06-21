@@ -18,27 +18,54 @@ var cityParks = {
   }
 };
 
+var marker;
+function placeMarkerAndPanTo(latLng, map) {
+    if(marker) {
+        marker.setPosition(latLng);
+    } else {
+        marker = new google.maps.Marker({
+            position: latLng,
+            draggable: true,
+            map: map,
+            title: 'Alert Zone' 
+        });
+    }
+    
+  console.log("in the marker function");
+  map.panTo(latLng);
+}
+
 function initMap() {
-  var latLng = {lat:20.987402, lng: -86.828344};
+  var latLong = {lat:20.987402, lng: -86.828344};
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: latLng,
+    center: latLong,
     zoom: 17
   });
   var infoWindow = new google.maps.InfoWindow({map: map});
-
-  var marker = new google.maps.Marker({
-    position: latLng,
-    draggable: true,
+  var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+  var markerPosition = new google.maps.Marker({
+    position: latLong,
     map: map,
-    title: 'Alert Zone' 
+    title: 'Your Position',
+    icon: "http://maps.google.com/mapfiles/ms/icons/green.png"
   });
+
+  map.addListener('click', function(e) {
+      placeMarkerAndPanTo(e.latLng, map);
+      console.log("CLICK " + e.latLng );
+  });
+
+ /*map.addListener('dragend', function(e) {
+     placeMarkerAndPanTo(e.latLng, map);
+     console.log("DRAG " + e.latLng);
+     //console.log("DRAG " + marker.getPosition().lng());
+ });
   google.maps.event.addListener(marker, "dragend", function() {
     console.log(marker.getPosition().lat());
     console.log(marker.getPosition().lng());
-  });
-  marker.setMap(map);
-  console.log(marker.position);
-  console.log("Hi");
+  });*/
+
+  //marker.setMap(map);
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) { 
@@ -61,6 +88,7 @@ function initMap() {
   for(var parks in cityParks){
       console.log(parks)
       var parkCircle = new google.maps.Circle({
+        clickable: false, 
         strokeColor: cityParks[parks].color,
         strokeOpacity: 0.8,
         strokeWeight: 2,
@@ -71,7 +99,10 @@ function initMap() {
         radius: 100
         });
   }
+
+  
 }
+
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
