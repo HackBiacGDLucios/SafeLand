@@ -1,4 +1,23 @@
 
+function FindParentName() {
+
+    var xmlClient = new XMLHttpRequest();
+    xmlClient.open("GET", "/Parent/GetParent/"+localStorage.getItem("Id"));
+    xmlClient.responseType = 'json';
+    xmlClient.send(null);
+
+    xmlClient.onload = function () {
+        try {
+            var id = xmlClient.response.Parent;
+            var name = id.FirstName + " " + id.LastName;
+            confirm.log(name);
+            $("#Username").append("<a><i class=\"material-icons left\">face</i>" + name + "</a>");
+        } catch (e) {
+            alert("An error ocurred");
+        }
+    }
+}
+
 //get Register info
 function getInfo() {
     var names = document.getElementById("names").value;

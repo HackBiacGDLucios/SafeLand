@@ -31,6 +31,17 @@ namespace Horus.Controllers
             _childMethods = childMehtods;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetParent([FromRoute]string Id)
+        {
+            var parent = await _parentMethods.Get(Id);
+            if(parent != null)
+            {
+                return Json(new { Parent = parent });
+            }
+            return Json(new { Message = "Error" });
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddChild([FromBody]ChildVM model)
         {

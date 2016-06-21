@@ -36,43 +36,44 @@
         </div>
     </div>
     <!-- MAIN NAVBAR-->
-        <div class="navbar-fixed">
-            <nav>
-                <div class="nav-wrapper light-green darken-1">
-                    <!--<ul class="hide-on-med-and-down">
-                        <li><a <span onclick="openNav()"></span><i class="material-icons right">menu</i></a>
-                    </ul>-->
-                    <a href="index.html" class="center brand-logo"><div class="logoHolder" id="logoHolder"><img src="media/logo.png" id="logoImg" alt="SafeLand"></div></a>
-                    <ul class="right hide-on-med-and-down">
-                        <li><a><i class="material-icons left">face</i>Welcome Lucio</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-<div class="row">
-<div id="childList" class="col s3 m4">
-    <div id="listAppend" class="row">
-        <!--JSON list child-->
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper light-green darken-1">
+                <!--<ul class="hide-on-med-and-down">
+                    <li><a <span onclick="openNav()"></span><i class="material-icons right">menu</i></a>
+                </ul>-->
+                <a href="index.html" class="center brand-logo"><div class="logoHolder" id="logoHolder"><img src="media/logo.png" id="logoImg" alt="SafeLand"></div></a>
+                <ul class="right hide-on-med-and-down">
+                    <li id="Username"></li>
+                </ul>
+            </div>
+        </nav>
     </div>
-</div>
-<div id="map">
- </div>
- <div class="fixed-action-btn"  style="bottom: 150px; right: 24px;">
- <a class="btn-floating tooltipped btn-large waves-effect waves-light green"  data-position="left" data-delay="50" data-tooltip="Add a child"<span onclick="openNav()"></span><i class="material-icons">add</i></a>
- </div>
- <div class="fixed-action-btn" style="bottom: 230px; right: 24px;">
-    <a class="btn-floating btn-large red">
-      <i class="large material-icons">mode_edit</i>
-    </a>
-    <ul class="icons-list">
-      <li><a class="btn-floating tooltipped black" data-position="left" data-delay="50" data-tooltip="Alert Danger"><i class="material-icons">warning</i>
-      <li><a class="btn-floating tooltipped red" data-position="left" data-delay="50" data-tooltip="Alert Warning"><i class="material-icons">error</i></a></li>
-      <li><a class="btn-floating tooltipped orange" data-position="left" data-delay="50" data-tooltip="Alert Suspicious Activity"><i class="material-icons">bug_report</i></a></li>
-      <li><a class="btn-floating tooltipped yellow darken-1" data-position="left" data-delay="50" data-tooltip="Alert empty place"><i class="material-icons">visibility_off</i></a></li>
-      <li><a class="btn-floating tooltipped green" data-position="left" data-delay="50" data-tooltip="Alert Cool Zone"><i class="material-icons">insert_emoticon</i></a></li>
-    </ul>
-  </div>
-</div>
+    <div class="row">
+        <div id="childList" class="col s3 m4">
+            <div id="listAppend" class="row">
+                <!--JSON list child-->
+            </div>
+        </div>
+    </div>
+    <div id="map">
+    </div>
+    <div class="fixed-action-btn" style="bottom: 150px; right: 24px;">
+        <a class="btn-floating tooltipped btn-large waves-effect waves-light green" data-position="left" data-delay="50" data-tooltip="Add a child"<span onclick="openNav()"></span><i class="material-icons">add</i></a>
+    </div>
+    <div class="fixed-action-btn" style="bottom: 230px; right: 24px;">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+        <ul class="icons-list">
+            <li><a class="btn-floating tooltipped black" data-position="left" data-delay="50" data-tooltip="Alert Danger"><i class="material-icons">warning</i>
+            <li><a class="btn-floating tooltipped red" data-position="left" data-delay="50" data-tooltip="Alert Warning"><i class="material-icons">error</i></a></li>
+            <li><a class="btn-floating tooltipped orange" data-position="left" data-delay="50" data-tooltip="Alert Suspicious Activity"><i class="material-icons">bug_report</i></a></li>
+            <li><a class="btn-floating tooltipped yellow darken-1" data-position="left" data-delay="50" data-tooltip="Alert empty place"><i class="material-icons">visibility_off</i></a></li>
+            <li><a class="btn-floating tooltipped green" data-position="left" data-delay="50" data-tooltip="Alert Cool Zone"><i class="material-icons">insert_emoticon</i></a></li>
+        </ul>
+    </div>
+    </div>
     <script src="js/maps.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZy9dlLqu_Ga4Lim_4-uz2oyR9O16Q-y0&signed_in=true&callback=initMap"
             async defer>
@@ -95,5 +96,8 @@
                 closeNav();
             }
         });</script>
+    <script>
+        FindParentName();
+    </script>
 </body>
 </html>
