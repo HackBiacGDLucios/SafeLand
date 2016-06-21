@@ -11,8 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 using Horus.Repositories.Interface;
 using Horus.Repositories.Implementation;
-using Horus.ViewModels;
 using Horus.Data;
+using Horus.Models;
 
 namespace Horus
 {
@@ -20,10 +20,10 @@ namespace Horus
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IHostingEnvironment envApp)
         {
             services.AddDbContext<ApplicationDbContext>(
-                options => options.UseSqlServer("Server=tcp:findspotuser.database.windows.net,1433;Data Source=findspotuser.database.windows.net;Initial Catalog=usersDB;Persist Security Info=False;User ID={your_username};Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+                options => options.UseSqlite($@"Data Source={envApp.ContentRootPath}/users.db"));
 
             services.AddIdentity<UserApplication, IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -33,6 +33,8 @@ namespace Horus
             services.AddAuthentication();
 
             services.AddTransient<IParentRepository, ParentRepository>();
+            services.AddTransient<IChildRepository, ChildRepository>();
+            services.AddTransient<IAlertRepository, AlertRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

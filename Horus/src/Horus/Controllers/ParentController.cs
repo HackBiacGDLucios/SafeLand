@@ -25,6 +25,8 @@ namespace Horus.Controllers
             IParentRepository parentMethods,
             IChildRepository childMehtods)
         {
+            _userManager = userManager;
+            _signInManager = signInManager;
             _parentMethods = parentMethods;
             _childMethods = childMehtods;
         }

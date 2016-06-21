@@ -1,26 +1,32 @@
 
 //get Register info
 function getInfo() {
-    var names = document.getElementById("names");
-    var lastname = document.getElementById("lastnames");
-    var email = document.getElementById("email");
-    var passwd = document.getElementById("psswd");
-    var confirmPasswd = document.getElementById("confirmpsswd");
-    var username = document.getElementById("username");
+    var names = document.getElementById("names").value;
+    var lastname = document.getElementById("lastnames").value;
+    var email = document.getElementById("email").value;
+    var passwd = document.getElementById("psswd").value;
+    var confirmPasswd = document.getElementById("confirmPasswd").value;
+    var username = document.getElementById("username").value;
     var xmlClient = new XMLHttpRequest();
     
     xmlClient.open("POST", "/Account/Register");
-    xmlClient.setRequestHeader("content-type", "application/json")
-    xmlClient.send(new {
-        "FirstName" : names,
-        "LastName" : lastname,
-        "Email" : email,
-        "ConfirmPassword" : confirmPasswd,
-        "Password" : passwd,
-        "Username" : username
+    xmlClient.setRequestHeader("Content-Type", "application/json")
+    xmlClient.onreadystatechange = ReadBody();
+    xmlClient.send(
+        JSON.stringify({
+        "FirstName": names,
+        "LastName": lastname,
+        "Email": email,
+        "ConfirmPassword": confirmPasswd,
+        "Password": passwd,
+        "Username": username
+    }));
 
-    })
 
+    function ReadBody() {
+        var id = xmlClient.responseBody;
+        console.debug("Body", id);
+    }
 };
 
 function getLogIn () {
