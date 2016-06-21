@@ -38,7 +38,7 @@ function getChildInfo(){
         "LastNameChild": lastNameChild,
         "EmailChild": emailChild,
         "PasswordChild": passwdChild,
-        "ParentId": parentId,
+        "ParentId": localStorage.getItem("Id"),
     }));
 }
 
