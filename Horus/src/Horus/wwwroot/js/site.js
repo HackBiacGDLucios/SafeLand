@@ -25,7 +25,6 @@ function getInfo() {
     xmlClient.onload = function () {
         try {
             var id = xmlClient.response.Id;
-            console.log(id);
             localStorage.setItem("Id", id);
         } catch (e) {
             alert("An error ocurred");
@@ -78,7 +77,6 @@ function getLogIn() {
     xmlClient.onload = function () {
         try{
             var id = xmlClient.response.Id;
-            console.log(id);
             localStorage.setItem("Id", id);
             localStorage.setItem("isChild", true)
         } catch (e) {
@@ -118,7 +116,6 @@ function PostAlert(type) {
     xmlClient.onload = function () {
         try {
             var id = xmlClient.response.Id;
-            console.log(id);
             localStorage.setItem("LastAlert", id);
         } catch (e) {
             alert("An error ocurred");
@@ -144,9 +141,8 @@ function ParentLogin() {
     xmlClient.onload = function () {
         try {
             var id = xmlClient.response.Id;
-            console.log(id);
             localStorage.setItem("Id", id);
-            localStorage.setItem("isChild", true)
+            localStorage.setItem("isChild", false)
         } catch (e) {
             alert("An error ocurred");
         }
