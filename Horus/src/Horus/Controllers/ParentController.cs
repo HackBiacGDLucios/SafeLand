@@ -50,7 +50,7 @@ namespace Horus.Controllers
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                         LastKnownLocation = new Point(),
-                        Id=user.Id
+                        id=user.Id
                     });
 
                     if (success)

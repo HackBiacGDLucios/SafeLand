@@ -7,11 +7,11 @@ function getInfo() {
     var passwd = document.getElementById("psswd").value;
     var confirmPasswd = document.getElementById("confirmPasswd").value;
     var username = document.getElementById("username").value;
+
     var xmlClient = new XMLHttpRequest();
-    
     xmlClient.open("POST", "/Account/Register");
-    xmlClient.setRequestHeader("Content-Type", "application/json")
-    xmlClient.onreadystatechange = ReadBody();
+    xmlClient.setRequestHeader("Content-Type", "application/json");
+    xmlClient.responseType = 'json';
     xmlClient.send(
         JSON.stringify({
         "FirstName": names,
@@ -20,7 +20,7 @@ function getInfo() {
         "ConfirmPassword": confirmPasswd,
         "Password": passwd,
         "Username": username
-    }));
+        }));
 
 function getChildInfo(){
     var namesChild = document.getElementById("namesChild").value;
@@ -40,27 +40,44 @@ function getChildInfo(){
         "PasswordChild": passwdChild,
         "ParentId": localStorage.getItem("Id"),
     }));
+    xmlClient.onload = function () {
+        try {
+            
+            var id = xmlClient.response.Id;
+            console.log(id);
+            localStorage.setItem("Id", id);
+            
+        } catch (e) {
+            alert("An Error ocurred");
+        }
+    }
 }
 
-    function ReadBody() {
-        var id = xmlClient.responseBody;
-        console.debug("Body", id);
-    }
-};
+function getLogIn() {
+    var username = document.getElementById("username").value;
+    var passwd = document.getElementById("passwd").value;
 
-function getLogIn () {
-    var username = document.getElementById("name");
-    var passwd = document.getElementById("passwd");
+    xmlClient = new XMLHttpRequest();
 
     xmlClient.open("POST", "/Account/Login");
-    xmlClient.setRequestHeader("content-type", "application/json")
-    xmlClient.send(new {
-        "Password" : passwd,
-        "Username" : username
-
-    })
+    xmlClient.setRequestHeader("content-type", "application/json");
+    xmlClient.responseType='json'
+    xmlClient.send(
+        JSON.stringify({
+        "Password": passwd,
+        "Username": username
+    }));
     
-};
+    xmlClient.onload = function () {
+        try{
+            var id = xmlClient.response.Id;
+            console.log(id);
+            localStorage.setItem("Id", id);
+        } catch (e) {
+            alert("An error ocurred");
+        }
+    }
+}
 
 
 

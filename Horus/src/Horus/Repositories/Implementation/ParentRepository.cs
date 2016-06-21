@@ -23,7 +23,7 @@ namespace Horus.Repositories.Implementation
         }
         public async Task<bool> Create(Parent parent)
         {
-            var id = await parentWarehouse.Store(parent, parent.Id);
+            var id = await parentWarehouse.Store(parent, parent.id);
             if (id != null)
             {
                 return true;
@@ -61,7 +61,7 @@ namespace Horus.Repositories.Implementation
         {
             try
             {
-                await parentWarehouse.Update(parent, parent.Id);
+                await parentWarehouse.Update(parent, parent.id);
                 return true;
             }
             catch (Exception)

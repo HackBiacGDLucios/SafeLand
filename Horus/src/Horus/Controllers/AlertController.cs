@@ -26,7 +26,7 @@ namespace Horus.Controllers
         {
             var id = await _alertMethod.Create(new Alert
             {
-                Id = Guid.NewGuid().ToString(),
+                id = Guid.NewGuid().ToString(),
                 IsChild = alert.IsChild,
                 Location = alert.Location,
                 Message = alert.Message,

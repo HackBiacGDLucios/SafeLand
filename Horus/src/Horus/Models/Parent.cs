@@ -8,7 +8,7 @@ namespace Horus.Models
     [Serializable]
     public class Parent
     {
-        public string Id { get; set; }
+        public string id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public List<string> Children { get; set; }
