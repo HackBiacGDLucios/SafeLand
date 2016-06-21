@@ -22,7 +22,7 @@ namespace Horus.Repositories.Implementation
         
         public async Task<string> Create(Alert alert)
         {
-            var id = await _alertWarehouse.Store(alert, alert.Id);
+            var id = await _alertWarehouse.Store(alert, alert.id);
             if(id != null)
             {
                 return id;
@@ -86,7 +86,7 @@ namespace Horus.Repositories.Implementation
         {
             try
             {
-                _alertWarehouse.Update(alert, alert.Id).Start();
+                _alertWarehouse.Update(alert, alert.id).Start();
                 return Task.FromResult(true);
             }
             catch (Exception)

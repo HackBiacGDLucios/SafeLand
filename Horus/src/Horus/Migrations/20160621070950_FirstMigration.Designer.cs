@@ -8,8 +8,8 @@ using Horus.Data;
 namespace Horus.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160621062500_FistMigration")]
-    partial class FistMigration
+    [Migration("20160621070950_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

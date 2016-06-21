@@ -18,12 +18,17 @@ namespace Horus
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services, IHostingEnvironment envApp)
+        private string ConnectionString;
+        public Startup(IHostingEnvironment envApp)
+        {
+            ConnectionString = $@"Data Source={envApp.ContentRootPath}/users.db";
+        }
+
+
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(
-                options => options.UseSqlite($@"Data Source={envApp.ContentRootPath}/users.db"));
+                options => options.UseSqlite(ConnectionString));
 
             services.AddIdentity<UserApplication, IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>()

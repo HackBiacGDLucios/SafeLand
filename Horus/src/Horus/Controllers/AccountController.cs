@@ -61,7 +61,7 @@ namespace Horus.Controllers
                 {
                     var success = await _parentMethod.Create(new Parent
                     {
-                        Id = user.Id,
+                        id = user.Id,
                         Children = new List<string>(),
                         FirstName= model.FirstName,
                         LastName=model.LastName
