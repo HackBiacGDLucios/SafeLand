@@ -10,7 +10,6 @@ function FindParentName() {
         try {
             var id = xmlClient.response.Parent;
             var name = id.FirstName + " " + id.LastName;
-            confirm.log(name);
             $("#Username").append("<a><i class=\"material-icons left\">face</i>" + name + "</a>");
         } catch (e) {
             alert("An error ocurred");

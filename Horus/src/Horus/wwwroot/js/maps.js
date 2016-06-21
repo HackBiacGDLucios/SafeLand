@@ -36,10 +36,11 @@ function placeMarkerAndPanTo(latLng, map) {
 
 var positionAlertLat;
 var positionAlertLng;
+var map;
 
 function initMap() {
   var latLong = {lat:20.987402, lng: -86.828344};
-  var map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     center: latLong,
     zoom: 17
   });
@@ -173,20 +174,16 @@ function getChildList() {
                 $("#listAppend").append("<div class=\"col s12\"><div class=\"card blue-grey darken-1\"><div class=\"card-content white-text\"><i class=\"material-icons medium left\">child_care</i><span class=\"card-title\">Try to add a new child\"</span></div></div></div>");
             } else {
                 var listMarks = [];
-                var colors = ["green", "blue", "orange", "yellow"];
+                var colors = ["blue", "orange", "yellow"];
                 for(var child in id) {
-                    $("#listAppend").append("<div class=\"col s12\"><div class=\"card blue-grey darken-1\"><div class=\"card-content white-text\"><i class=\"material-icons medium left\">child_care</i><span class=\"card-title\">"+child.FirstName+" "+child.LastName+"</span></div></div></div>");
-                    var latLongChild = {
-                    lat: id[child].LastKnownLocation.Lat,
-                    lng: id[child].LastKnownLocation.Lon
-                    };
-                    listMarks.push(new google.maps.Marker({
-                        position: latLong,
+                    $("#listAppend").append("<div class=\"col s12\"><div class=\"card blue-grey darken-1\"><div class=\"card-content white-text\"><i class=\"material-icons medium left\">child_care</i><span class=\"card-title\">"+id[child].FirstName+" "+id[child].LastName+"</span></div></div></div>");
+                    
+                    maker = new google.maps.Marker({
+                        position: new google.maps.LatLng(id[child].LastKnownLocation.Lat, id[child].LastKnownLocation.Lon),
                         map: map,
                         title: id[child].FirstName,
                         icon: "http://maps.google.com/mapfiles/ms/icons/"+colors[child]+".png"
                         })
-                    );
                 }
                 
                 
@@ -195,4 +192,50 @@ function getChildList() {
             alert("An error ocurred");
         }
     }
+}
+
+function drawAlertZone() {
+    var finalColor;
+    $('#danger').click(function () {
+        finalColor = '#000000';
+        drawCircle(finalColor);
+    });
+    $('#warning').click(function () {
+        finalColor = "#FF0000";
+        drawCircle(finalColor);
+    });
+    $('#suspicious').click(function () {
+        finalColor = "#ec6e19";
+        drawCircle(finalColor);
+    });
+    $('#empty').click(function () {
+        finalColor = "#D0FA58";
+        drawCircle(finalColor);
+    });
+    $('#cool').click(function () {
+        finalColor = "#58FA58";
+        drawCircle(finalColor);
+    });
+    
+}
+
+function drawCircle(color) {
+
+    var coordinates = {
+        lat: positionAlertLat,
+        lng: positionAlertLng
+    }
+
+    var parkCircle = new google.maps.Circle({
+        clickable: false,
+        strokeColor: color, //color alerta,
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: color, //color alerta,  
+        fillOpacity: 0.35,
+        map: map,
+        center: coordinates,
+        radius: 50
+    })
+
 }
