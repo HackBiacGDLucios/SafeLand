@@ -17,7 +17,8 @@
       "type": "build"
     },
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc2-final",
-    "Warehouse": "1.0.7"
+    "Warehouse": "1.0.7",
+    "Microsoft.Azure.NotificationHubs": "1.0.5"
   },
 
   "tools": {

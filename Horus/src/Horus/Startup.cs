@@ -36,7 +36,7 @@ namespace Horus
 
             services.AddMvc();
             services.AddAuthentication();
-
+            
             services.AddTransient<IParentRepository, ParentRepository>();
             services.AddTransient<IChildRepository, ChildRepository>();
             services.AddTransient<IAlertRepository, AlertRepository>();
@@ -47,7 +47,7 @@ namespace Horus
         {
             app.UseStaticFiles();
             app.UseIdentity();
-
+           
             app.UseMvc(
                 routes =>
                 {

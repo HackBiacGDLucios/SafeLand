@@ -72,14 +72,14 @@ namespace Horus.Controllers
                 }
                 return Json(new { Message = "ErrorCreatingSql" });
             }
-            return Json("ModelInvalid");
+            return Json(new { Message = "ModelInvalid" });
         }
 
         [HttpGet]
         public async Task<IActionResult> Get([FromRoute]string Id)
         {
             var child = await _childMethods.Get(Id);
-            return Json(child);
+            return Json(new { Child = child });
         }
 
         [HttpGet]
@@ -88,13 +88,13 @@ namespace Horus.Controllers
             var parent = await _parentMethods.Get(Id);
             var childs = new ConcurrentBag<Child>();
 
-            Parallel.ForEach(parent.Children, async child =>
+            Parallel.ForEach(parent.Children, child =>
             {
-                var children = await _childMethods.Get(child);
+                var children = _childMethods.Get(child).Result;
                 childs.Add(children);
             });
 
-            return Json(childs);
+            return Json(new { Childs = childs.ToArray() });
         }
 
         [HttpPost]
