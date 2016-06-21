@@ -72,7 +72,13 @@ h2 span{
     font-size: 36px !important;
     margin-left: 50px;
 }
-
+#childList{
+    position: absolute;
+    top: 70px;
+    left: 20px;
+    z-index: 1000;
+    width: auto;
+}
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
     transition: margin-left .5s;
