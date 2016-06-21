@@ -6,47 +6,68 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
-    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="media/logoVerde.png">
     <title>SafeLand</title>
 </head>
 <body style="overflow-y:hidden;">
-<!-- Side Nav-->
-<div id="mySidenav" class="sidenav">
-  <div class="formulario ">
-      <div class="container">
-             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <h4>Add your child</h4><i class="material-icons">child_care</i>
-            <br/>
-            <input class="black-text" id="names" type="text" placeholder="Name(s)" required>
-            <br/>
-            <input class="black-text" id="lastnames" type="text" placeholder="Last Names" required>
-            <br/>
-            <input class="black-text" id="email" type="email" placeholder="Email" required>
-            <br/>
-            <input class="black-text" id="psswd" type="password" placeholder="Password" required>
-            <br/>
-            <button onclick="getInfo()", class="btn waves-effect waves-light btn-large light-green darken-1" type="submit" name="action">Register
-            <i class="material-icons right">send</i>
-             </button>
+    <!-- Side Nav-->
+    <div id="mySidenav" class="sidenav">
+        <div class="formulario ">
+            <div class="container">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <h4>Add your child</h4><i class="material-icons">child_care</i>
+                <br />
+                <input class="black-text" id="names" type="text" placeholder="Name(s)" required>
+                <br />
+                <input class="black-text" id="lastnames" type="text" placeholder="Last Names" required>
+                <br />
+                <input class="black-text" id="email" type="email" placeholder="Email" required>
+                <br />
+                <input class="black-text" id="psswd" type="password" placeholder="Password" required>
+                <br />
+                <button onclick="getChildInfo()" class="btn waves-effect waves-light btn-large light-green darken-1" type="submit" name="action">
+                    Register
+                    <i class="material-icons right">send</i>
+                </button>
             </div>
         </div>
-</div>
-<!-- MAIN NAVBAR-->
-<div id="main">
-    <div class="navbar-fixed">
-    <nav>
-        <div class="nav-wrapper light-green darken-1">
-            <!--<ul class="hide-on-med-and-down">
-                <li><a <span onclick="openNav()"></span><i class="material-icons right">menu</i></a>
-            </ul>-->
-            <a href="index.html" class="center brand-logo"><div class="logoHolder" id="logoHolder"><img src="media/logo.png" id="logoImg" alt="SafeLand"></div></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a><i class="material-icons left">face</i>Welcome Lucio</a></li>
+    </div>
+    <!-- MAIN NAVBAR-->
+    <div id="main">
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper light-green darken-1">
+                    <!--<ul class="hide-on-med-and-down">
+                        <li><a <span onclick="openNav()"></span><i class="material-icons right">menu</i></a>
+                    </ul>-->
+                    <a href="index.html" class="center brand-logo"><div class="logoHolder" id="logoHolder"><img src="media/logo.png" id="logoImg" alt="SafeLand"></div></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a><i class="material-icons left">face</i>Welcome Lucio</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div id="map">
+        </div>
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a class="btn-floating btn-large waves-effect waves-light green"<span onclick="openNav()"></span><i class="material-icons">add</i></a>
+        </div>
+        <div class="fixed-action-btn" style="bottom: 120px; right: 24px;">
+            <a class="btn-floating btn-large red">
+                <i class="large material-icons">mode_edit</i>
+            </a>
+            <ul>
+                <li><a class="btn-floating black"><i class="material-icons">warning</i></a></li>
+                <li><a class="btn-floating red"><i class="material-icons">error</i></a></li>
+                <li><a class="btn-floating orange"><i class="material-icons">bug_report</i></a></li>
+                <li><a class="btn-floating yellow darken-1"><i class="material-icons">visibility_off</i></a></li>
+                <li><a class="btn-floating green"><i class="material-icons">insert_emoticon</i></a></li>
             </ul>
         </div>
+<<<<<<< HEAD
     </nav>
     </div>  
 <div id="map">
@@ -67,26 +88,28 @@
     </ul>
   </div>
 </div>
+    </div>
     <script src="js/maps.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZy9dlLqu_Ga4Lim_4-uz2oyR9O16Q-y0&signed_in=true&callback=initMap"
-        async defer>
+            async defer>
     </script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="js/logo.js"></script>
+    <script src="js/site.js"></script>
     <script type="text/javascript">
-function openNav() {
-    document.getElementById("mySidenav").style.width = "100%";
-}
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "100%";
+        }
 
-/* Close/hide the sidenav */
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-}
-    $(document).bind('keydown',function(e){
-       if(e.keyCode == 32 || e.keyCode == 27) {
-        closeNav();
-       }
-    });</script>
+        /* Close/hide the sidenav */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        $(document).bind('keydown', function (e) {
+            if (e.keyCode == 32 || e.keyCode == 27) {
+                closeNav();
+            }
+        });</script>
 </body>
 </html>
