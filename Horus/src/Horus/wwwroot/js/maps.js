@@ -170,11 +170,26 @@ function getChildList() {
             var id = xmlClient.response.Childs;
             if(id.lenght == 0) {
                 alert("There is no children in your account");
-                
+                $("#listAppend").append("<div class=\"col s12\"><div class=\"card blue-grey darken-1\"><div class=\"card-content white-text\"><i class=\"material-icons medium left\">child_care</i><span class=\"card-title\">Try to add a new child\"</span></div></div></div>");
             } else {
+                var listMarks = [];
+                var colors = ["green", "blue", "orange", "yellow"];
                 for(var child in id) {
-                    $("#listAppend").append("<div class=\"col s12\"><div class=\"card blue-grey darken-1\"><div class=\"card-content white-text\"><i class=\"material-icons medium left\">child_care</i><span class=\"card-title\">"+id[child].FirstName+" "+id[child].LastName+"</span></div></div></div>");
+                    $("#listAppend").append("<div class=\"col s12\"><div class=\"card blue-grey darken-1\"><div class=\"card-content white-text\"><i class=\"material-icons medium left\">child_care</i><span class=\"card-title\">"+child.FirstName+" "+child.LastName+"</span></div></div></div>");
+                    var latLongChild = {
+                    lat: id[child].LastKnownLocation.Lat,
+                    lng: id[child].LastKnownLocation.Lon
+                    };
+                    listMarks.push(new google.maps.Marker({
+                        position: latLong,
+                        map: map,
+                        title: id[child].FirstName,
+                        icon: "http://maps.google.com/mapfiles/ms/icons/"+colors[child]+".png"
+                        })
+                    );
                 }
+                
+                
             }
         } catch (e) {
             alert("An error ocurred");
