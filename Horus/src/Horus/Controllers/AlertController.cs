@@ -35,7 +35,7 @@ namespace Horus.Controllers
             });
             if(id != null)
             {
-                return Json(id);
+                return Json(new { Id = id });
             }
             return Json(new { Message = "Error" });
         }
