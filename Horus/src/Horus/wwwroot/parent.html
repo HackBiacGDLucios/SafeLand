@@ -40,14 +40,17 @@
         <div class="formulario ">
             <div class="container">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <h4>Add your child</h4><i class="material-icons">child_care</i>
+                <i class="material-icons large">warning</i><h4>Describe the Alert</h4>
                 <br />
-                <input class="black-text" id="names" type="text" placeholder="Name(s)" required>
-                <br />
-                <input class="black-text" id="lastnames" type="text" placeholder="Last Names" required>
+                <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Give us a description of what you want to alert</label>
+        </div>
+      </div>
                 <br />
                 <button onclick="sentAlertInfo()" class="btn waves-effect waves-light btn-large white black-text" type="submit" name="action">
-                    Alert
+                    Send Alert
                     <i class="material-icons right">send</i>
                 </button>
             </div>
@@ -111,10 +114,11 @@
 
         /* Close/hide the sidenav */
         function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("mySidenavAlert").style.width=document.getElementById("mySidenav").style.width = "0";
+            
         }
         $(document).bind('keydown', function (e) {
-            if (e.keyCode == 32 || e.keyCode == 27) {
+            if (e.keyCode == 27) {
                 closeNav();
             }
         });</script>

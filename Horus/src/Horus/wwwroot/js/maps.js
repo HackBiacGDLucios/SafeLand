@@ -198,25 +198,30 @@ function drawAlertZone() {
     var finalColor;
     $('#danger').click(function () {
         finalColor = '#000000';
+        openNavAlert();
         drawCircle(finalColor);
+        
     });
     $('#warning').click(function () {
         finalColor = "#FF0000";
+        openNavAlert();
         drawCircle(finalColor);
     });
     $('#suspicious').click(function () {
         finalColor = "#ec6e19";
+        openNavAlert();
         drawCircle(finalColor);
     });
     $('#empty').click(function () {
         finalColor = "#D0FA58";
+        openNavAlert();
         drawCircle(finalColor);
     });
     $('#cool').click(function () {
         finalColor = "#58FA58";
+        openNavAlert();
         drawCircle(finalColor);
     });
-    
 }
 
 function drawCircle(color) {
