@@ -77,7 +77,7 @@ h2 span{
     top: 70px;
     left: 20px;
     z-index: 1000;
-    width: auto;
+    width: 30%;
 }
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
