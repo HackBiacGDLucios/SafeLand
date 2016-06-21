@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+        <div class="registro">
+            <form action="post">
+                <h3 class="h3form">Registrate</h3>
+                <div class="form-input">
+                    <input type="text" id="inputName" name="name" value="" placeholder="Nombre(s)" required>
+                </div>
+                <div class="form-input">
+                    <input type="text" id="inputLastName" name="last-name" value="" placeholder="Apellidos" required>
+                </div>
+                <div class="form-input">
+                    <input type="text" id="inputUsername" name="username" value="" placeholder="Nombre de Usuario" required>
+                </div>
+                <div class="form-input">
+                    <input type="email" id="inputEmail" name="email" value="" placeholder="Correo Electronico" required>
+                </div>
+                <div class="form-input">
+                    <input type="password" id="inputPassword" name="password" value="" placeholder="Contraseña" required>
+                </div>
+                <div class="form-input">
+                    <input type="password" id="inputRePassWord" name="re-password" value="" placeholder="Reescribe tu contraseña" required>
+                </div>
+                <div class="form-input">
+                    <button class="buttonForm" type="button" onclick="signin()">Registrar</button>
+                </div>
+                <br>
+                <a href='/'><i class="material-icons">home</i></a>
+
+            </form>
+        </div>
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+    </body>
+  </html>

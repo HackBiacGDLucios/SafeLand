@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<style>
+h2 span{
+   color: white; 
+   position: absolute; 
+   bottom: 100px; 
+   right: 0; 
+   width: auto; 
+   font: bold 24px/45px Helvetica, Sans-Serif; 
+   letter-spacing: -1px;  
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 10px;
+   }
+.logoHolder{
+       background: #c0ca33;
+       border-bottom-left-radius: 100px;
+       border-bottom-right-radius: 100px;
+       width: 110%;
+   }
+html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-y: hidden;
+      }
+      #map {
+        height: 100%;
+      }
+      .sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px !important;
+    margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    height: 100%;
+    widows: 100%;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+</style>
+<body>
+<!-- Side Nav-->
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+<div id="main">
+    <div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper lime darken-1">
+            <ul class="hide-on-med-and-down">
+                <li><a <span onclick="openNav()"></span><i class="material-icons right">menu</i></a>
+            </ul>
+            <a href="#!" class="center brand-logo"><div class="logoHolder"><img src="media/logo.png" alt="SafeLand"></div></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a><i class="material-icons left">face</i>Welcome Lucio</a></li>
+            </ul>
+        </div>
+    </nav>
+    </div>  
+<div id="map">
+ </div>
+</div>
+    <script>
+// Note: This example requires that you consent to location sharing when
+// prompted by your browser. If you see the error "The Geolocation service
+// failed.", it means you probably did not give permission for the browser to
+// locate you.
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+    document.body.style.backgroundColor = "white";
+}
+var cityParks = {
+  park1 : {
+    center : {lat: 20.985344 , lng: -86.828616 },
+    color: '#FF0000'
+  },
+  park2 : {
+    center: {lat: 20.988688, lng: -86.828485},
+    color: '#58FA58'
+  },
+  park3 : {
+    center: {lat: 20.987746 , lng: -86.831468},
+    color: '#D0FA58'
+  }
+};
+
+function initMap() {
+  var latLng = {lat:20.987402, lng: -86.828344};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: latLng,
+    zoom: 17
+  });
+  var infoWindow = new google.maps.InfoWindow({map: map});
+
+  var marker = new google.maps.Marker({
+    position: latLng,
+    draggable: true,
+    map: map,
+    title: 'Alert Zone' 
+  });
+  google.maps.event.addListener(marker, "dragend", function() {
+    console.log(marker.getPosition().lat());
+    console.log(marker.getPosition().lng());
+  });
+  marker.setMap(map);
+  console.log(marker.position);
+  console.log("Hi");
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) { 
+      var pos = {
+        lat: 20.987402,
+        lng: -86.828344
+      };
+
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('I found you! ;)');
+      map.setCenter(pos);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
+
+  for(var parks in cityParks){
+      console.log(parks)
+      var parkCircle = new google.maps.Circle({
+        strokeColor: cityParks[parks].color,
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor:cityParks[parks].color,
+        fillOpacity: 0.35,
+        map: map,
+        center: cityParks[parks].center,
+        radius: 100
+        });
+  }
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+}
+
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZy9dlLqu_Ga4Lim_4-uz2oyR9O16Q-y0&signed_in=true&callback=initMap"
+        async defer>
+    </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript">$(document).ready(function(){
+      $('.parallax').parallax();
+    });</script>
+</body>
+</html>
