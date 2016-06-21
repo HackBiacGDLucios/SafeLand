@@ -22,6 +22,25 @@ function getInfo() {
         "Username": username
     }));
 
+function getChildInfo(){
+    var namesChild = document.getElementById("namesChild").value;
+    var lastNameChild = document.getElementById("lastNameChild").value;
+    var emailChild = document.getElementById("emailChild").value;
+    var passwdChild = document.getElementById("passwdChild").value;
+    var xmlClinet = new XMLHttpRequest();
+
+    xmlClient.open("POST", "/Account/Register");
+    xmlClient.setRequestHeader("Content-Type", "application/json")
+    xmlClient.onreadystatechange = ReadBody();
+    xmlClient.send(
+        JSON.stringify({
+        "FirstNameChild": namesChild,
+        "LastNameChild": lastNameChild,
+        "EmailChild": emailChild,
+        "PasswordChild": passwdChild,
+        "ParentId": parentId,
+    }));
+}
 
     function ReadBody() {
         var id = xmlClient.responseBody;
