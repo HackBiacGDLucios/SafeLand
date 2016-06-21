@@ -25,7 +25,6 @@ function placeMarkerAndPanTo(latLng, map) {
     } else {
         marker = new google.maps.Marker({
             position: latLng,
-            draggable: true,
             map: map,
             title: 'Alert Zone' 
         });
@@ -34,6 +33,9 @@ function placeMarkerAndPanTo(latLng, map) {
   console.log("in the marker function");
   map.panTo(latLng);
 }
+
+var positionAlertLat;
+var positionAlertLng;
 
 function initMap() {
   var latLong = {lat:20.987402, lng: -86.828344};
@@ -53,6 +55,9 @@ function initMap() {
   map.addListener('click', function(e) {
       placeMarkerAndPanTo(e.latLng, map);
       console.log("CLICK " + e.latLng );
+      positionAlertLat = e.latLng.lat();
+      positionAlertLng = e.latLng.lng();
+      console.log("Lat " + positionAlertLat + " Lng " + positionAlertLng);
   });
 
  /*map.addListener('dragend', function(e) {
@@ -109,4 +114,44 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setContent(browserHasGeolocation ?
                         'Error: The Geolocation service failed.' :
                         'Error: Your browser doesn\'t support geolocation.');
+}
+
+function PostAlert(type) {
+    var message = document.getElementById("message").value;
+
+    xmlClient = new XMLHttpRequest();
+    xmlClient.open("POST", "/Alert/PushAlert");
+    xmlClient.setRequestHeader("Content-Type", "application/json");
+    xmlClient.responseType = 'json';
+    
+    var lat = positionAlertLat;
+    var lon = positionAlertLng;
+
+    console.log(lat + " lat " + lon + " Lng");
+        
+    navigator.geolocation.getCurrentPosition(function (position) {
+        lat = position.coords.latitud;
+        lon = position.coords.longitude;
+    });
+
+    xmlClient.send(
+        JSON.stringify({
+            "IsChild": localStorage.getItem("isChild"),
+            "Type": type,
+            "Message": message,
+            "UserId": localStorage.getItem("Id"),
+            "Location": {
+                "Lat": lat,
+                "Lon": lon
+            }
+        }));
+
+    xmlClient.onload = function () {
+        try {
+            var id = xmlClient.response.Id;
+            localStorage.setItem("LastAlert", id);
+        } catch (e) {
+            alert("An error ocurred");
+        }
+    }
 }
