@@ -155,3 +155,29 @@ function PostAlert(type) {
         }
     }
 }
+
+
+
+function getChildList() {
+    xmlClient = new XMLHttpRequest();
+
+    xmlClient.open("GET", "/Parent/getAll/" + localStorage.getItem("Id"));
+    xmlClient.responseType = 'json'
+    xmlClient.send(null);
+
+    xmlClient.onload = function () {
+        try {
+            var id = xmlClient.response.Childs;
+            if(id.lenght == 0) {
+                alert("There is no children in your account");
+                
+            } else {
+                for(var child in id) {{}
+                    $("#listAppend").append("<div class=\"col s12\"><div class=\"card blue-grey darken-1\"><div class=\"card-content white-text\"><span class=\"card-title\">"+child.FirstName+" "+child.LastName+"</span></div></div></div>");
+                }
+            }
+        } catch (e) {
+            alert("An error ocurred");
+        }
+    }
+}
